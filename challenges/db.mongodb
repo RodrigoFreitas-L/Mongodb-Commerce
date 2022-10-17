@@ -1,7 +1,7 @@
 use('commerce');
 db.produtos.updateMany(
   {},
-  { vendasPorDia: [0, 0, 0, 0, 0, 0, 0] },
+  { $push: { tags: { $each: ["combo", "tasty"], $sort: 1 } } },
 );
 
-db.produtos.find();
+db.produtos.find({}, { nome: true, tags: true, _id: false });
